@@ -1,19 +1,26 @@
-<div class="post_comment">
-  <div>
-    <% book.post_comments.each do |post_comment| %>
-    <%= link_to user_path(post_comment.id) do %>
-      <%= image_tag post_comment.user.get_profile_image, size:"100x100" %></br>
-      <%= post_comment.user.name %>
-    <% end %>
-  </div>
-  <div class="post_comment">
-      <%= post_comment.comment %>
-      <% if post_comment.user == current_user %>
-        <%= link_to "Destroy", book_post_comment_path(post_comment.book, post_comment), method: :delete, class: "btn btn-sm btn-danger destroy_book_#{book.id}" %>
+<% book.post_comments.each do |post_comment| %>
+<table>
+<tbody>
+  <tr>
+    <td>
+      <%= link_to user_path(post_comment.id) do %>
+        <%= image_tag post_comment.user.get_profile_image, size:"100x100" %></br>
+        <%= post_comment.user.name %>
       <% end %>
-    <% end %>
-  </div>
-</div>
+    </td>
+    <td style="padding: 10px;" >
+      <%= post_comment.comment %>
+    </td>
+
+    <% if post_comment.user == current_user %>
+    <td>
+      <%= link_to "Destroy", book_post_comment_path(post_comment.book, post_comment), method: :delete, class: "btn btn-sm btn-danger destroy_book_#{book.id}" %>
+    </td>
+     <% end %>
+  </tr>
+</tbody>
+<% end %>
+</table>
 
 <div>
   <%= form_with model: [book, post_comment] do |f| %>

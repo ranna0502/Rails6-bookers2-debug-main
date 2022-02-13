@@ -5,12 +5,16 @@ class BooksController < ApplicationController
     @book_new = Book.new
     @user = @book.user
     @post_comment = PostComment.new
+    @following_users = @user.following_user
+    @follower_users = @user.follower_user
   end
 
   def index
     @user = current_user
     @books = Book.all
     @book_new = Book.new
+    @following_users = @user.following_user
+    @follower_users = @user.follower_user
   end
 
   def create
