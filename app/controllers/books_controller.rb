@@ -5,6 +5,7 @@ class BooksController < ApplicationController
     @book_new = Book.new
     @user = @book.user
     @post_comment = PostComment.new
+    @post_comments = @book.post_comments
     @following_users = @user.following_user
     @follower_users = @user.follower_user
   end

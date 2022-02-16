@@ -29,7 +29,14 @@
         </tr>
       </table>
 
-      <%= render "post_comments/post_comment", book: @book, post_comment: @post_comment %>
+
+      <div id="comments_area">
+        <%= render "post_comments/post_comment", book: @book, post_comments: @post_comments %>
+      </div>
+      <div>
+        <%= render "post_comments/form", book: @book, post_comment: @post_comment %>
+      </div>
+
 
 
     </div>

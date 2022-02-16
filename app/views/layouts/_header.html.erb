@@ -57,6 +57,8 @@
 </header>
 
 <!--検索窓-->
-<div class="text-center mt-2">
-  <%= render "searchs/form" %>
-</div>
+<% if user_signed_in? %>
+  <div class="text-center mt-2">
+    <%= render "searchs/form" %>
+  </div>
+<% end %>
