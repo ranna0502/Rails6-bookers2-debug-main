@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     @book = Book.new
     @following_users = @user.following_user
     @follower_users = @user.follower_user
+    @review_count = Book.where(id: Book.new).where(user_id: current_user.id).count
   end
 
   def index
@@ -14,6 +15,7 @@ class UsersController < ApplicationController
     @book = Book.new
     @following_users = @user.following_user
     @follower_users = @user.follower_user
+    @review_count = Book.where(id: @books).where(user_id: current_user.id).count
   end
 
   def edit

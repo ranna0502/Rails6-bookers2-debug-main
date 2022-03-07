@@ -4,7 +4,7 @@
       <h2>User info</h2>
       <%= render 'users/info', user: @user, following_users: @following_users, follower_users: @follower_users %>
       <h2 class="mt-3">New book</h2>
-      <%= render 'form', book: @book_new %>
+      <%= render 'form', book: @book_new, review_count: @review_count %>
     </div>
     <div class='col-md-8 offset-md-1'>
   		<h2>Book detail</h2>
@@ -21,6 +21,20 @@
           <td >
             <%= render 'favorites/favorite', book: @book %>
           </td>
+          <td>
+            <div id="star-rate<%= @book.id%>"></div>
+            <script>
+              $('#star-rate<%= @book.id%>').raty({
+                size      : 36,
+                starOff   : '<%= asset_path('star-off.png') %>',
+                starOn    : '<%= asset_path('star-on.png') %>',
+                half      : false,
+                readOnly: true,
+                score: <%= @book.star %>,
+              });
+            </script>
+          </td>
+
 
           <% if @book.user == current_user%>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
@@ -31,7 +45,7 @@
 
 
       <div id="comments_area">
-        <%= render "post_comments/post_comment", book: @book, post_comments: @post_comments %>
+        <%= render "post_comments/post_comment", book: @book, post_comment: @post_comment　%>
       </div>
       <div>
         <%= render "post_comments/form", book: @book, post_comment: @post_comment %>
