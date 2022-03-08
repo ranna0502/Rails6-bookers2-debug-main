@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
 
+
   # そのユーザーがフォローしている人ORフォローされている人の一覧を出す場合に使用
   # 自分がフォローしている人
   has_many :following_user, through: :follower, source: :followed
@@ -42,5 +43,14 @@ class User < ApplicationRecord
   def following?(user)
     following_user.include?(user)
   end
+
+  def self.search_for(content, method)
+    if method == 'perfect'
+      User.where(name: content)
+    else
+      User.where('name LIKE ?', '%' + content + '%')
+    end
+  end
+
 
 end

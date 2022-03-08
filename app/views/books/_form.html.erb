@@ -7,6 +7,10 @@
     <%= f.label :opinion %>
     <%= f.text_area :body, class: 'form-control book_body' %>
   </div>
+  <div class="form-group">
+    <%= f.label :category %>
+    <%= f.text_field :tag_name, class: 'form-control tag_tag_name' %>
+  </div>
 
   <% if review_count < 1 %>
     <div class="form-group" id="star">
